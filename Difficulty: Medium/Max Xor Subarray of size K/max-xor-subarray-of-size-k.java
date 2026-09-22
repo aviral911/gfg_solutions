@@ -1,0 +1,20 @@
+class Solution {
+    public int maxSubarrayXOR(int[] arr, int k) {
+        int xor = 0;
+
+        for (int i = 0; i < k; i++) {
+            xor = xor ^ arr[i];
+        }
+
+        int max = xor;
+
+        for (int i = k; i < arr.length; i++) {
+            xor = xor ^ arr[i];
+            xor = xor ^ arr[i - k];
+
+            max = Math.max(max, xor);
+        }
+
+        return max;
+    }
+}
